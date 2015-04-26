@@ -45,3 +45,7 @@ type MemoryStats struct {
 type MemoryDetailsStats struct {
 	TotalCache *uint64 `json:"total_cache"`
 }
+
+type PerCpuUsageStats struct {
+	TotalCores *uint64 len(`json:"total_cache"`)
+}
