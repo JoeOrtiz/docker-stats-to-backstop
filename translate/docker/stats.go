@@ -33,7 +33,6 @@ type CpuUsageStats struct {
 	UsageInKernelmode *uint64 `json:"usage_in_kernelmode"`
 	UsageInUsermode   *uint64 `json:"usage_in_usermode"`
         CpuCores          []uint64 `json:"percpu_usage"`
-        }
 }
 
 type MemoryStats struct {
