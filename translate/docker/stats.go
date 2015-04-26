@@ -26,7 +26,7 @@ type NetworkStats struct {
 type CpuStats struct {
 	CpuUsage       CpuUsageStats `json:"cpu_usage"`
 	SystemCpuUsage *uint64       `json:"system_cpu_usage"`
-  CpuCores       *uint64       len(`json:"percpu_usage"`)
+        CpuCores       *uint64       `json:"percpu_usage"`
 }
 
 type CpuUsageStats struct {
