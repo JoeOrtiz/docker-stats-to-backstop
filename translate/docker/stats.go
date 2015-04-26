@@ -26,7 +26,7 @@ type NetworkStats struct {
 type CpuStats struct {
 	CpuUsage       CpuUsageStats `json:"cpu_usage"`
 	SystemCpuUsage *uint64       `json:"system_cpu_usage"`
-        PerCpuUsage    PerCpuUsageStats   `json:"percpu_usage"`
+        CpuCores       *uint64       len(`json:"percpu_usage"`)
 }
 
 type CpuUsageStats struct {
@@ -44,8 +44,4 @@ type MemoryStats struct {
 
 type MemoryDetailsStats struct {
 	TotalCache *uint64 `json:"total_cache"`
-}
-
-type PerCpuUsageStats struct {
-	TotalCores *uint64 len(`json:"total_cache"`)
 }
