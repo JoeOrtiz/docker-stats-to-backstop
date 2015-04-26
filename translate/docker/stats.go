@@ -32,8 +32,8 @@ type CpuUsageStats struct {
 	TotalUsage        *uint64 `json:"total_usage"`
 	UsageInKernelmode *uint64 `json:"usage_in_kernelmode"`
 	UsageInUsermode   *uint64 `json:"usage_in_usermode"`
-	CpuCores          []struct {
-        `json:"percpu_usage"`    map[string]string
+	`json:"percpu_usage"` []struct {
+        CpuCores    map[string]string
         }
 }
 
