@@ -48,7 +48,7 @@ type MemoryStats struct {
 }
 
 type MemoryDetailsStats struct {
-	TotalCache *uint64 `json:"total_cache"`
+	TotalCache uint64 `json:"total_cache"`
 }
 
 type BlkioStatEntry struct {
