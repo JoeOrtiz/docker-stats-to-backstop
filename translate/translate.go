@@ -2,8 +2,8 @@
 package translate
 
 import (
-	"github.com/deliverous/docker-stats-to-backstop/translate/backstop"
-	"github.com/deliverous/docker-stats-to-backstop/translate/docker"
+	"github.com/JoeOrtiz/docker-stats-to-backstop/translate/backstop"
+	"github.com/JoeOrtiz/docker-stats-to-backstop/translate/docker"
 	"time"
 )
 
