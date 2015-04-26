@@ -3,7 +3,7 @@ package server
 
 import (
 	"encoding/json"
-	"github.com/deliverous/docker-stats-to-backstop/translate/docker"
+	"github.com/JoeOrtiz/docker-stats-to-backstop/translate/docker"
 	"regexp"
 	"strings"
 )

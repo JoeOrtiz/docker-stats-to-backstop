@@ -2,7 +2,7 @@
 package server
 
 import (
-	"github.com/deliverous/docker-stats-to-backstop/translate/docker"
+	"github.com/JoeOrtiz/docker-stats-to-backstop/translate/docker"
 	"testing"
 )
 

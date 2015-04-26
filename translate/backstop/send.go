@@ -5,7 +5,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"errors"
-	"github.com/deliverous/docker-stats-to-backstop/utils"
+	"github.com/JoeOrtiz/docker-stats-to-backstop/utils"
 	"log"
 	"net/http"
 )

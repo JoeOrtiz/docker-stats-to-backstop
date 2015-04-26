@@ -2,9 +2,9 @@
 package server
 
 import (
-	"github.com/deliverous/docker-stats-to-backstop/translate"
-	"github.com/deliverous/docker-stats-to-backstop/translate/backstop"
-	"github.com/deliverous/docker-stats-to-backstop/translate/docker"
+	"github.com/JoeOrtiz/docker-stats-to-backstop/translate"
+	"github.com/JoeOrtiz/docker-stats-to-backstop/translate/backstop"
+	"github.com/JoeOrtiz/docker-stats-to-backstop/translate/docker"
 	"log"
 	"net/http"
 	"strings"
