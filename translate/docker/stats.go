@@ -5,57 +5,57 @@ import "time"
 
 type ThrottlingData struct {
 	// Number of periods with throttling active
-	Periods uint64 `json:"periods"`
+	Periods *uint64 `json:"periods"`
 	// Number of periods when the container hit its throttling limit.
-	ThrottledPeriods uint64 `json:"throttled_periods"`
+	ThrottledPeriods *uint64 `json:"throttled_periods"`
 	// Aggregate time the container was throttled for in nanoseconds.
-	ThrottledTime uint64 `json:"throttled_time"`
+	ThrottledTime *uint64 `json:"throttled_time"`
 }
 
 // All CPU stats are aggregated since container inception.
 type CpuUsage struct {
 	// Total CPU time consumed.
 	// Units: nanoseconds.
-	TotalUsage uint64 `json:"total_usage"`
+	TotalUsage *uint64 `json:"total_usage"`
 	// Total CPU time consumed per core.
 	// Units: nanoseconds.
-	PercpuUsage []uint64 `json:"percpu_usage"`
+	PercpuUsage []*uint64 `json:"percpu_usage"`
 	// Time spent by tasks of the cgroup in kernel mode.
 	// Units: nanoseconds.
-	UsageInKernelmode uint64 `json:"usage_in_kernelmode"`
+	UsageInKernelmode *uint64 `json:"usage_in_kernelmode"`
 	// Time spent by tasks of the cgroup in user mode.
 	// Units: nanoseconds.
-	UsageInUsermode uint64 `json:"usage_in_usermode"`
+	UsageInUsermode *uint64 `json:"usage_in_usermode"`
 }
 
 type CpuStats struct {
 	CpuUsage       CpuUsage       `json:"cpu_usage"`
-	SystemUsage    uint64         `json:"system_cpu_usage"`
+	SystemUsage    *uint64         `json:"system_cpu_usage"`
 	ThrottlingData ThrottlingData `json:"throttling_data,omitempty"`
 }
 
 type MemoryStats struct {
 	// current res_counter usage for memory
-	Usage uint64 `json:"usage"`
+	Usage *uint64 `json:"usage"`
 	// maximum usage ever recorded.
-	MaxUsage uint64 `json:"max_usage"`
+	MaxUsage *uint64 `json:"max_usage"`
 	// TODO(vishh): Export these as stronger types.
 	// all the stats exported via memory.stat.
-	MemoryDetailsStats map[string]uint64 `json:"stats"`
+	MemoryDetailsStats map[string]*uint64 `json:"stats"`
 	// number of times memory usage hits limits.
-	Failcnt uint64 `json:"failcnt"`
-	Limit   uint64 `json:"limit"`
+	Failcnt *uint64 `json:"failcnt"`
+	Limit   *uint64 `json:"limit"`
 }
 
 type MemoryDetailsStats struct {
-	TotalCache uint64 `json:"total_cache"`
+	TotalCache *uint64 `json:"total_cache"`
 }
 
 type BlkioStatEntry struct {
-	Major uint64 `json:"major"`
-	Minor uint64 `json:"minor"`
+	Major *uint64 `json:"major"`
+	Minor *uint64 `json:"minor"`
 	Op    string `json:"op"`
-	Value uint64 `json:"value"`
+	Value *uint64 `json:"value"`
 }
 
 type BlkioStats struct {
@@ -71,14 +71,14 @@ type BlkioStats struct {
 }
 
 type Network struct {
-	RxBytes   uint64 `json:"rx_bytes"`
-	RxPackets uint64 `json:"rx_packets"`
-	RxErrors  uint64 `json:"rx_errors"`
-	RxDropped uint64 `json:"rx_dropped"`
-	TxBytes   uint64 `json:"tx_bytes"`
-	TxPackets uint64 `json:"tx_packets"`
-	TxErrors  uint64 `json:"tx_errors"`
-	TxDropped uint64 `json:"tx_dropped"`
+	RxBytes   *uint64 `json:"rx_bytes"`
+	RxPackets *uint64 `json:"rx_packets"`
+	RxErrors  *uint64 `json:"rx_errors"`
+	RxDropped *uint64 `json:"rx_dropped"`
+	TxBytes   *uint64 `json:"tx_bytes"`
+	TxPackets *uint64 `json:"tx_packets"`
+	TxErrors  *uint64 `json:"tx_errors"`
+	TxDropped *uint64 `json:"tx_dropped"`
 }
 
 type ContainerStats struct {
