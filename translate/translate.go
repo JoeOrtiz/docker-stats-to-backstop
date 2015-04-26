@@ -28,14 +28,14 @@ func Translate(prefix string, stats *docker.ContainerStats) []backstop.Metric {
 	c.add("network.tx_packets", stats.Network.TxPackets)
 	c.add("network.tx_errors", stats.Network.TxErrors)
 	c.add("network.tx_dropped", stats.Network.TxDropped)
-	c.add("blkio.io_serviced_bytes", stats.BlkioStats.IoServiceBytesRecursive)
-        c.add("blkio.io_serviced", stats.BlkioStats.IoServicedRecursive)
-        c.add("blkio.io_queued", stats.BlkioStats.IoQueuedRecursive)
-        c.add("blkio.io_serviced_time", stats.BlkioStats.IoServiceTimeRecursive)
-        c.add("blkio.io_wait_time", stats.BlkioStats.IoWaitTimeRecursive)
-        c.add("blkio.io_merged", stats.BlkioStats.IoMergedRecursive)
-        c.add("blkio.io_time", stats.BlkioStats.IoTimeRecursive)
-        c.add("blkio.sectors", stats.BlkioStats.SectorsRecursive)
+	c.add("blkio.io_serviced_bytes", stats.BlkioStats.IoServiceBytesRecursive.Value)
+        c.add("blkio.io_serviced", stats.BlkioStats.IoServicedRecursive.Value)
+        c.add("blkio.io_queued", stats.BlkioStats.IoQueuedRecursive.Value)
+        c.add("blkio.io_serviced_time", stats.BlkioStats.IoServiceTimeRecursive.Value)
+        c.add("blkio.io_wait_time", stats.BlkioStats.IoWaitTimeRecursive.Value)
+        c.add("blkio.io_merged", stats.BlkioStats.IoMergedRecursive.Value)
+        c.add("blkio.io_time", stats.BlkioStats.IoTimeRecursive.Value)
+        c.add("blkio.sectors", stats.BlkioStats.SectorsRecursive.Value)
 	return c.metrics
 }
 
