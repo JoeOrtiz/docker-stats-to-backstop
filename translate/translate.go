@@ -57,6 +57,7 @@ func activeMemory(stats *docker.ContainerStats) *uint64 {
 }
 
 func cpuCores(stats *docker.ContainerStats) string {
-        return uint64(len(stats.Cpu.CpuUsage.CpuCores))
+        containerCpucores = uint64(len(stats.Cpu.CpuUsage.CpuCores))
+        return containerCpucores
 }
 
