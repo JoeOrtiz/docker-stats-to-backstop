@@ -56,8 +56,8 @@ func (c *collector) add(name string, value *uint64) {
 }
 
 func activeMemory(stats *docker.ContainerStats) *uint64 {
-	usage := stats.Memory.Usage
-	cache := stats.Memory.Stats.TotalCache
+	usage := stats.MemoryStats.Usage
+	cache := stats.MemoryStats.Stats.TotalCache
 	if usage != nil && cache != nil {
 		active := *usage - *cache
 		return &active
