@@ -9,16 +9,17 @@ import (
 
 func Translate(prefix string, stats *docker.ContainerStats) []backstop.Metric {
 	c := collector{prefix: prefix, timestamp: stats.Timestamp, metrics: []backstop.Metric{}}
-	c.add("cpu.system", stats.Cpu.SystemCpuUsage)
+	c.add("cpu.system", stats.CpuStats.SystemUsage)
 	c.add("cpu.cores", cpuCores(stats))
-	c.add("cpu.total", stats.Cpu.CpuUsage.TotalUsage)
-	c.add("cpu.kernel", stats.Cpu.CpuUsage.UsageInKernelmode)
-	c.add("cpu.user", stats.Cpu.CpuUsage.UsageInUsermode)
-	c.add("memory.usage", stats.Memory.Usage)
-	c.add("memory.cache", stats.Memory.Stats.TotalCache)
+	c.add("cpu.total", stats.CpuStats.CpuUsage.TotalUsage)
+	c.add("cpu.kernel", stats.CpuStats.CpuUsage.UsageInKernelmode)
+	c.add("cpu.user", stats.CpuStats.CpuUsage.UsageInUsermode)
+	c.add("memory.usage", stats.MemoryStats.Usage)
+	c.add("memory.cache", stats.MemoryStats.Stats.TotalCache)
 	c.add("memory.active", activeMemory(stats))
-	c.add("memory.max_usage", stats.Memory.MaxUsage)
-	c.add("memory.limit", stats.Memory.Limit)
+	c.add("memory.max_usage", stats.MemoryStats.MaxUsage)
+        c.add("memory.fail", stats.MemoryStats.Failcnt)
+	c.add("memory.limit", stats.MemoryStats.Limit)
 	c.add("network.rx_bytes", stats.Network.RxBytes)
 	c.add("network.rx_packets", stats.Network.RxPackets)
 	c.add("network.rx_errors", stats.Network.RxErrors)
@@ -27,6 +28,14 @@ func Translate(prefix string, stats *docker.ContainerStats) []backstop.Metric {
 	c.add("network.tx_packets", stats.Network.TxPackets)
 	c.add("network.tx_errors", stats.Network.TxErrors)
 	c.add("network.tx_dropped", stats.Network.TxDropped)
+	c.add("blkio.io_serviced_bytes", stats.BlkioStats.IoServiceBytesRecursive)
+        c.add("blkio.io_serviced", stats.BlkioStats.IoServicedRecursive)
+        c.add("blkio.io_queued", stats.BlkioStats.IoQueuedRecursive)
+        c.add("blkio.io_serviced_time", stats.BlkioStats.IoServiceTimeRecursive)
+        c.add("blkio.io_wait_time", stats.BlkioStats.IoWaitTimeRecursive)
+        c.add("blkio.io_merged", stats.BlkioStats.IoMergedRecursive)
+        c.add("blkio.io_time", stats.BlkioStats.IoTimeRecursive)
+        c.add("blkio.sectors", stats.BlkioStats.SectorsRecursive)
 	return c.metrics
 }
 
@@ -57,7 +66,6 @@ func activeMemory(stats *docker.ContainerStats) *uint64 {
 }
 
 func cpuCores(stats *docker.ContainerStats) *uint64 {
-        containerCpucores := uint64(len(stats.Cpu.CpuUsage.CpuCores))
+        containerCpucores := uint64(len(stats.CpuStats.CpuUsage.PercpuUsage))
         return &containerCpucores
 }
-
