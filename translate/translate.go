@@ -10,7 +10,7 @@ import (
 func Translate(prefix string, stats *docker.ContainerStats) []backstop.Metric {
 	c := collector{prefix: prefix, timestamp: stats.Timestamp, metrics: []backstop.Metric{}}
 	c.add("cpu.system", stats.Cpu.SystemCpuUsage)
-	c.add("cpu.cores", float64(stats.Cpu.CpuUsage.CpuCores))
+	c.add("cpu.cores", cpuCores(stats))
 	c.add("cpu.total", stats.Cpu.CpuUsage.TotalUsage)
 	c.add("cpu.kernel", stats.Cpu.CpuUsage.UsageInKernelmode)
 	c.add("cpu.user", stats.Cpu.CpuUsage.UsageInUsermode)
@@ -55,3 +55,8 @@ func activeMemory(stats *docker.ContainerStats) *uint64 {
 	}
 	return nil
 }
+
+func cpuCores(stats *docker.ContainerStats) *len {
+        return float64(stats.Cpu.CpuUsage.CpuCores)
+}
+
