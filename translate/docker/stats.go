@@ -41,7 +41,7 @@ type MemoryStats struct {
 	MaxUsage uint64 `json:"max_usage"`
 	// TODO(vishh): Export these as stronger types.
 	// all the stats exported via memory.stat.
-	Stats map[string]uint64 `json:"stats"`
+	MemoryDetailsStats map[string]uint64 `json:"stats"`
 	// number of times memory usage hits limits.
 	Failcnt uint64 `json:"failcnt"`
 	Limit   uint64 `json:"limit"`
@@ -82,7 +82,7 @@ type Network struct {
 }
 
 type ContainerStats struct {
-	Read        time.Time   `json:"read"`
+	Timestamp   time.Time   `json:"read"`
 	Network     Network     `json:"network,omitempty"`
 	CpuStats    CpuStats    `json:"cpu_stats,omitempty"`
 	MemoryStats MemoryStats `json:"memory_stats,omitempty"`
