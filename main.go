@@ -3,7 +3,7 @@ package main
 
 import (
 	"flag"
-	"github.com/deliverous/docker-stats-to-backstop/server"
+	"github.com/JoeOrtiz/docker-stats-to-backstop/server"
 	"log"
 	"os"
 	"time"
