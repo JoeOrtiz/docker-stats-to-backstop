@@ -47,6 +47,10 @@ type MemoryStats struct {
 	Limit   uint64 `json:"limit"`
 }
 
+type MemoryDetailsStats struct {
+	TotalCache *uint64 `json:"total_cache"`
+}
+
 type BlkioStatEntry struct {
 	Major uint64 `json:"major"`
 	Minor uint64 `json:"minor"`
