@@ -71,14 +71,14 @@ func cpuCores(stats *docker.ContainerStats) *uint64 {
         return &containerCpucores
 }
 
-func cpuPercent(stats *docker.ContainerStats) uint64 {
+func cpuPercent(stats *docker.ContainerStats) *uint64 {
 	var (
 		cpuPercent = 0.0
-		cpuDelta = uint64(stats.CpuStats.CpuUsage.TotalUsage)
-		systemDelta = uint64(stats.CpuStats.SystemUsage)
+		cpuDelta := uint64(stats.CpuStats.CpuUsage.TotalUsage)
+		systemDelta := uint64(stats.CpuStats.SystemUsage)
 	)
 	if systemDelta > 0.0 && cpuDelta > 0.0 {
-        containercpuPercent = (cpuDelta / systemDelta) * uint64(len(stats.CpuStats.CpuUsage.PercpuUsage)) * 100.0
+        containercpuPercent := (cpuDelta / systemDelta) * uint64(len(stats.CpuStats.CpuUsage.PercpuUsage)) * 100.0
 	}
         return &containercpuPercent
 }
