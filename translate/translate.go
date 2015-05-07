@@ -9,10 +9,9 @@ import (
 
 func Translate(prefix string, stats *docker.ContainerStats) []backstop.Metric {
 	c := collector{prefix: prefix, timestamp: stats.Timestamp, metrics: []backstop.Metric{}}
-	c.add("cpu.system", stats.CpuStats.SystemUsage)
+	c.add("cpu.system", cpuSystemUsage(stats))
 	c.add("cpu.cores", cpuCores(stats))
-	c.add("cpu.percent", cpuPercent(stats))
-	c.add("cpu.total", stats.CpuStats.CpuUsage.TotalUsage)
+	c.add("cpu.total", cpuTotalUsage(stats))
 	c.add("cpu.kernel", stats.CpuStats.CpuUsage.UsageInKernelmode)
 	c.add("cpu.user", stats.CpuStats.CpuUsage.UsageInUsermode)
 	c.add("memory.usage", stats.MemoryStats.Usage)
@@ -71,12 +70,12 @@ func cpuCores(stats *docker.ContainerStats) *uint64 {
         return &containerCpucores
 }
 
-func cpuPercent(stats *docker.ContainerStats) *uint64 {
-	cpuDelta := stats.CpuStats.CpuUsage.TotalUsage
-        systemDelta := stats.CpuStats.SystemUsage
-	if systemDelta != nil && cpuDelta != nil {
-                containercpuPercent := ( cpuDelta / systemDelta ) * uint64(len(stats.CpuStats.CpuUsage.PercpuUsage)) * 100.0
-                return &containercpuPercent
-	}
-        return nil
+func cpuTotalUsage(stats *docker.ContainerStats) *uint64 {
+	cpuTotalUsageM := stats.CpuStats.CpuUsage.TotalUsage * uint64(len(stats.CpuStats.CpuUsage.PercpuUsage)) * 100.0
+	return &cpuTotalUsageM
+}
+
+func cpuSystemUsage(stats *docker.ContainerStats) *uint64 {
+	cpuSystemUsageM := stats.CpuStats.SystemUsage * uint64(len(stats.CpuStats.CpuUsage.PercpuUsage)) * 100.0
+	return &cpuSystemUsageM
 }
