@@ -71,11 +71,13 @@ func cpuCores(stats *docker.ContainerStats) *uint64 {
 }
 
 func cpuTotalUsage(stats *docker.ContainerStats) *uint64 {
-	cpuTotalUsageM := *uint64(stats.CpuStats.CpuUsage.TotalUsage * uint64(len(stats.CpuStats.CpuUsage.PercpuUsage)) * 100.0)
+	TotalUsage := stats.CpuStats.CpuUsage.TotalUsage
+	cpuTotalUsageM := TotalUsage * uint64(len(stats.CpuStats.CpuUsage.PercpuUsage)) * 100.0
 	return &cpuTotalUsageM
 }
 
 func cpuSystemUsage(stats *docker.ContainerStats) *uint64 {
-	cpuSystemUsageM := *uint64(stats.CpuStats.SystemUsage * uint64(len(stats.CpuStats.CpuUsage.PercpuUsage)) * 100.0)
+	SystemUsage := stats.CpuStats.SystemUsage
+	cpuSystemUsageM := SystemUsage * uint64(len(stats.CpuStats.CpuUsage.PercpuUsage)) * 100.0
 	return &cpuSystemUsageM
 }
