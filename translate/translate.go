@@ -75,7 +75,7 @@ func cpuPercent(stats *docker.ContainerStats) *uint64 {
 	cpuDelta := stats.CpuStats.CpuUsage.TotalUsage
         systemDelta := stats.CpuStats.SystemUsage
 	if systemDelta != nil && cpuDelta != nil {
-                containercpuPercent := (*cpuDelta / *systemDelta) * uint64(len(stats.CpuStats.CpuUsage.PercpuUsage)) * 100.0
+                containercpuPercent := ( cpuDelta / systemDelta ) * uint64(len(stats.CpuStats.CpuUsage.PercpuUsage)) * 100.0
                 return &containercpuPercent
 	}
         return nil
